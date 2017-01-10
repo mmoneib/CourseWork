@@ -42,7 +42,7 @@ public class FibonacciLastDigit {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
-		int c = getFibonacciLastDigitNaive(n);
+		int c = getFibonacciLastDigitFast(n);
 		System.out.println(c);
 	}
 }
