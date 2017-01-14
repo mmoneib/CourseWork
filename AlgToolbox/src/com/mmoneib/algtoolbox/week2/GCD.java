@@ -3,7 +3,7 @@ package com.mmoneib.algtoolbox.week2;
 import java.util.*;
 
 public class GCD {
-	protected static int gcd_naive(int a, int b) {
+	protected static int lcm_naive(int a, int b) {
 		int current_gcd = 1;
 		for (int d = 2; d <= a && d <= b; ++d) {
 			if (a % d == 0 && b % d == 0) {
