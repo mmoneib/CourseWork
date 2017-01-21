@@ -27,13 +27,17 @@ public class FibonacciLastDigit {
 	}
 
 	protected static int getFibonacciLastDigitFast(int index) {
-		int[] fibArr=new int[index+1];
+		int size = index + 1;
+		if (index <= 1) {
+			size = 2;
+		}
+		int[] fibArr = new int[size];
 		  
 		  fibArr[0]=0;
 		  fibArr[1]=1;
 		  
 		  for(int i=2;i<=index;i++){
-			  fibArr[i]=fibArr[i-1]%10+fibArr[i-2]%10;
+			  fibArr[i]=(fibArr[i-1]%10+fibArr[i-2]%10)%10;
 		  }
 		  
 		  return fibArr[index];

@@ -22,6 +22,8 @@ public class TestFibonacci extends AbstractTest{
 	@Test
 	public void testCalcFibFast() {
 		try {
+			assertEquals(2, Fibonacci.calcFibFast(3));
+			assertEquals(0, Fibonacci.calcFibFast(0));
 			assertEquals(1134903170, Fibonacci.calcFibFast(45));
 		} catch (Exception e) {
 			e.printStackTrace();

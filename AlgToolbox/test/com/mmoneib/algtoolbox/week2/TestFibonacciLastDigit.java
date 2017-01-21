@@ -22,6 +22,7 @@ public class TestFibonacciLastDigit extends AbstractTest {
 	public void testGetFibonacciLastDigitFast() {
 		try {
 			assertEquals(5, FibonacciLastDigit.getFibonacciLastDigitFast(327305));
+			assertEquals(1, FibonacciLastDigit.getFibonacciLastDigitFast(239));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Error: " + e.getMessage());
