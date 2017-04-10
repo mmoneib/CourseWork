@@ -1,19 +1,34 @@
 package hello;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID", unique = true, nullable = false)
 	private Integer id;
 	
 	private String name;
 	
 	private String email;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "user_language", catalog = "db_example", joinColumns = {
+			@JoinColumn(name = "USER_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "LANGUAGE_ID", nullable = false, updatable = false) })
+	private Set<Language> languages;
 
 	public Integer getId() {
 		return id;
@@ -37,5 +52,13 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<Language> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(Set<Language> languages) {
+		this.languages = languages;
 	}
 }
