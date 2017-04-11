@@ -2,16 +2,23 @@ package hello;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+/*
+ * The @JsonIdentityInfo was added to avoid recursive serialization of the
+ *  many-tomany relationship. This indicates that each Language object will
+ *  be serialized only once inside the JSON. When further serialization is 
+ *  called for, its identity ("id" property) will be printed instead.
+ */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 public class Language {
 	@Id
@@ -21,7 +28,7 @@ public class Language {
 
 	private String language;
 
-	@ManyToMany(fetch=FetchType.LAZY,mappedBy="languages")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "languages")
 	private Set<User> users;
 
 	public int getId() {

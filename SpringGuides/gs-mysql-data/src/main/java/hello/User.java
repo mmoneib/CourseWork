@@ -13,17 +13,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+/*
+ * The @JsonIdentityInfo was added to avoid recursive serialization of the
+ *  many-tomany relationship. This indicates that each User object will
+ *  be serialized only once inside the JSON. When further serialization is 
+ *  called for, its identity ("id" property) will be printed instead.
+ */
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USER_ID", unique = true, nullable = false)
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String email;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_language", catalog = "db_example", joinColumns = {
 			@JoinColumn(name = "USER_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
