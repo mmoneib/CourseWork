@@ -5,8 +5,10 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+//Indicates the request body (parameters) for the POST endpoint.
 public class ReservationRequest {
 	private Long id;
+	private Long roomId;
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate checkin;
 	@DateTimeFormat(iso = ISO.DATE)
@@ -16,11 +18,20 @@ public class ReservationRequest {
 		super();
 	}
 
-	public ReservationRequest(Long id, LocalDate checkin, LocalDate checkout) {
+	public ReservationRequest(Long id, LocalDate checkin, LocalDate checkout, Long roomId) {
 		super();
 		this.id = id;
 		this.checkin = checkin;
 		this.checkout = checkout;
+		this.roomId = roomId;
+	}
+
+	public Long getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(Long roomId) {
+		this.roomId = roomId;
 	}
 
 	public Long getId() {

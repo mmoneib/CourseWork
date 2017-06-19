@@ -1,54 +1,45 @@
 package com.moneib.linkedin.learning.model.response;
 
-import com.moneib.linkedin.learning.model.Links;
+import java.time.LocalDate;
 
 public class ReservationResponse {
-	private long id;
-	private Integer roomNumber;
-	private Integer price;
-	private Links links;
+	private Long Id;
+	private LocalDate checkin;
+	private LocalDate checkout;
 
-	
+	public ReservationResponse(Long id, LocalDate checkin, LocalDate checkout) {
+		super();
+		Id = id;
+		this.checkin = checkin;
+		this.checkout = checkout;
+	}
+
 	public ReservationResponse() {
 		super();
 	}
-	
-	
-	public ReservationResponse(Integer number, Integer price) {
-		super();
-		this.roomNumber=number;
-		this.price=price;
+
+	public Long getId() {
+		return Id;
 	}
 
-	public long getId() {
-		return id;
+	public void setId(Long id) {
+		Id = id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public LocalDate getCheckin() {
+		return checkin;
 	}
 
-	public Integer getRoomNumber() {
-		return roomNumber;
+	public void setCheckin(LocalDate checkin) {
+		this.checkin = checkin;
 	}
 
-	public void setRoomNumber(Integer roomNumber) {
-		this.roomNumber = roomNumber;
+	public LocalDate getCheckout() {
+		return checkout;
 	}
 
-	public Integer getPrice() {
-		return price;
+	public void setCheckout(LocalDate checkout) {
+		this.checkout = checkout;
 	}
 
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public Links getLinks() {
-		return links;
-	}
-
-	public void setLinks(Links links) {
-		this.links = links;
-	}
 }
